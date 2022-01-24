@@ -3,7 +3,7 @@ const { QueryType } = require('discord-player');
 
 module.exports = {
     name: 'search',
-    aliases: ['sh'],
+    aliases: ['se'],
     utilisation: '{prefix}search [song name]',
     voiceChannel: true,
 
@@ -24,14 +24,14 @@ module.exports = {
         const embed = new MessageEmbed();
 
         embed.setColor('ORANGE');
-        embed.setAuthor({ text: `Results for ${args.join(' ')}`, iconURL: client.user.displayAvatarURL({ size: 1024, dynamic: true }) });
+        embed.setAuthor(`Results for ${args.join(' ')}`, client.user.displayAvatarURL({ size: 1024, dynamic: true }));
 
         const maxTracks = res.tracks.slice(0, 10);
 
         embed.setDescription(`${maxTracks.map((track, i) => `**${i + 1}**. ${track.title} | ${track.author}`).join('\n')}\n\nSelect choice between **1** and **${maxTracks.length}** or **cancel** ⬇️`);
 
         embed.setTimestamp();
-        embed.setFooter({ text: 'Music comes first - Made with heart by nottttttt ❤️', iconURL: message.author.avatarURL({ dynamic: true }) });
+        embed.setFooter('Music comes first - Made with heart by nottttttt ❤️', message.author.avatarURL({ dynamic: true }));
 
         message.channel.send({ embeds: [embed] });
 

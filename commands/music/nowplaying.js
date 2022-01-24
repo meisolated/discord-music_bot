@@ -14,10 +14,10 @@ module.exports = {
         const track = queue.current;
 
         const embed = new MessageEmbed();
-
+        console.log(track.title,);
         embed.setColor('RED');
         embed.setThumbnail(track.thumbnail);
-        embed.setAuthor({ text: track.title, iconURL: client.user.displayAvatarURL({ size: 1024, dynamic: true }) });
+        embed.setAuthor(track.title, client.user.displayAvatarURL({ size: 1024, dynamic: true }));
 
         const methods = ['disabled', 'track', 'queue'];
 
@@ -27,14 +27,13 @@ module.exports = {
         embed.setDescription(`Volume **${queue.volume}**%\nDuration **${trackDuration}**\nLoop mode **${methods[queue.repeatMode]}**\nRequested by ${track.requestedBy}`);
 
         embed.setTimestamp();
-        embed.setFooter({ text: 'Music comes first - Made with heart by nottttttt ❤️', iconURL: message.author.avatarURL({ dynamic: true }) });
+        embed.setFooter('Music comes first - Made with heart by nottttttt ❤️', message.author.avatarURL({ dynamic: true }));
 
         const saveButton = new MessageButton();
 
         saveButton.setLabel('Save this track');
         saveButton.setCustomId('saveTrack');
         saveButton.setStyle('SUCCESS');
-
         const row = new MessageActionRow().addComponents(saveButton);
 
         message.channel.send({ embeds: [embed], components: [row] });
